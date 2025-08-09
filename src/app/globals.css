@@ -1,26 +1,191 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Light theme (default) */
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #d9d9d9;
+  --sidebar-bg: #faf9f8;
+  --header-bg: #0078d4;
+  --card-bg: #ffffff;
+  --hover-bg: #f5f5f5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark theme */
+.dark-theme {
+  --bg-color: #1f1f1f;
+  --text-color: #ffffff;
+  --border-color: #424242;
+  --sidebar-bg: #2d2d2d;
+  --header-bg: #0078d4;
+  --card-bg: #2d2d2d;
+  --hover-bg: #404040;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Override Ant Design colors for dark theme */
+.dark-theme .ant-layout {
+  background: var(--bg-color) !important;
+}
+
+.dark-theme .ant-layout-sider {
+  background: var(--sidebar-bg) !important;
+}
+
+.dark-theme .ant-card {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .ant-card .ant-card-body {
+  background: var(--card-bg) !important;
+}
+
+.dark-theme .ant-typography {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-input {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-input:focus {
+  border-color: #0078d4 !important;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
+}
+
+.dark-theme .ant-btn-text {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-btn-text:hover {
+  background: var(--hover-bg) !important;
+}
+
+.dark-theme .ant-list-item {
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .ant-statistic-title {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.dark-theme .ant-statistic-content {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-dropdown {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .ant-dropdown-menu {
+  background: var(--card-bg) !important;
+}
+
+.dark-theme .ant-dropdown-menu-item {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-dropdown-menu-item:hover {
+  background: var(--hover-bg) !important;
+}
+
+.dark-theme .ant-drawer-content {
+  background: var(--card-bg) !important;
+}
+
+.dark-theme .ant-drawer-header {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .ant-form-item-label > label {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-select-selector {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-select-arrow {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-picker {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.dark-theme .ant-checkbox-wrapper {
+  color: var(--text-color) !important;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar for dark theme */
+.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: var(--card-bg);
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Search suggestions dark theme */
+.dark-theme .search-suggestions {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .search-suggestions .search-suggestion-item {
+  color: var(--text-color) !important;
+}
+
+.dark-theme .search-suggestions .search-suggestion-item:hover {
+  background: var(--hover-bg) !important;
+}
+
+/* Search dropdown animation */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Enhanced search input focus effects */
+.ant-input:focus-within {
+  box-shadow: 0 0 0 2px rgba(16, 110, 190, 0.2) !important;
+}
+
+/* Outlook-style search suggestions */
+.search-suggestion-item {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-suggestion-item:hover {
+  transform: translateX(2px);
 }
