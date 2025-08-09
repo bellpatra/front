@@ -355,24 +355,27 @@ export default function DashboardPage() {
         onLogout={handleLogout}
       />
 
-      <Layout>
-        {/* Dashboard Sidebar */}
-        <DashboardSidebar
-          collapsed={collapsed}
-          activeFolder={activeFolder}
-          onToggleCollapse={() => setCollapsed(!collapsed)}
-          onFolderChange={setActiveFolder}
-        />
+      {/* Dashboard Sidebar - Fixed Position */}
+      <DashboardSidebar
+        collapsed={collapsed}
+        activeFolder={activeFolder}
+        onToggleCollapse={() => setCollapsed(!collapsed)}
+        onFolderChange={setActiveFolder}
+      />
 
-        {/* Main Content */}
-        <Layout style={{ backgroundColor: '#f3f2f1' }}>
+      {/* Main Content Area with proper margin for fixed sidebar */}
+      <div style={{
+        marginLeft: collapsed ? 50 : 280, // Dynamic margin based on sidebar state
+        transition: 'margin-left 0.2s ease' // Smooth transition
+      }}>
+        <Layout style={{ backgroundColor: '#f3f2f1', minHeight: 'calc(100vh - 48px)' }}>
           <Content style={{
             margin: '24px',
             padding: '24px',
             backgroundColor: '#ffffff',
             borderRadius: '8px',
             boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-            minHeight: 'calc(100vh - 160px)'
+            minHeight: 'calc(100vh - 160px)' // Adjusted for header and footer
           }}>
             {/* Dashboard Content */}
             <div style={{ padding: '20px' }}>
@@ -447,7 +450,7 @@ export default function DashboardPage() {
           {/* Dashboard Footer */}
           <DashboardFooter />
         </Layout>
-      </Layout>
+      </div>
 
       {/* Advanced Search Drawer */}
       <Drawer
