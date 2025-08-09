@@ -340,7 +340,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <Layout style={{ minHeight: '100vh', backgroundColor: '#f3f2f1' }}>
+    <Layout style={{ minHeight: '100vh', backgroundColor: '#f3f2f1', paddingTop: '48px' }}>
       {/* Dashboard Header */}
       <DashboardHeader
         user={user}
